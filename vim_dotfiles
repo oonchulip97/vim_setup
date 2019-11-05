@@ -19,19 +19,29 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'romainl/vim-cool'
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
 call plug#end()
 
 let g:airline_theme='one'
+let g:airline#extensions#tabline#enabled = 1
 let g:cpp_class_scope_highlight = 1
 let g:cpp_member_variable_highlight = 1
 let g:cpp_class_decl_highlight = 1
 let g:validator_permament_sign = 1
 let g:indentLine_concealcursor = ""
 filetype plugin on
-nmap <C-G> :NERDTreeToggle<CR>
-nmap <C-H> :Files<CR>
-nmap <C-J> :TagbarToggle<CR>
-nmap <C-U> <Plug>MarkdownPreviewToggle
+nnoremap <C-F> :NERDTreeToggle<CR>
+nnoremap <C-V> :Files<CR>
+nnoremap <C-G> :TagbarToggle<CR>
+nnoremap <C-U> :MarkdownPreview<CR>
+nnoremap <C-J> :bnext<CR>
+nnoremap <C-K> :bprev<CR>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <C-L> <C-W><C-L>
+cnoreabbrev wq w<bar>Sayonara!
+cnoreabbrev  q       Sayonara!
+cnoreabbrev wQ w<bar>Sayonara
+cnoreabbrev  Q       Sayonara
 inoremap qq <ESC>
 colorscheme one
 set background=dark
@@ -48,6 +58,7 @@ set cindent
 set listchars=tab:>-
 set list
 set backspace=indent,eol,start
+set hidden
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
