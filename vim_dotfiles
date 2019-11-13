@@ -31,7 +31,7 @@ let g:validator_permament_sign = 1
 let g:indentLine_concealcursor = ""
 filetype plugin on
 nnoremap <C-F> :NERDTreeToggle<CR>
-nnoremap <C-V> :Files<CR>
+nnoremap <C-V> :Files ~<CR>
 nnoremap <C-G> :TagbarToggle<CR>
 nnoremap <C-U> :MarkdownPreview<CR>
 nnoremap <C-J> :bnext<CR>
