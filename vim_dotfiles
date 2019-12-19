@@ -20,6 +20,7 @@ Plug 'tpope/vim-commentary'
 Plug 'vim-scripts/ReplaceWithRegister'
 Plug 'romainl/vim-cool'
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
+Plug 'terryma/vim-smooth-scroll'
 call plug#end()
 
 let g:airline_theme='one'
@@ -38,11 +39,14 @@ nnoremap <C-J> :bnext<CR>
 nnoremap <C-K> :bprev<CR>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <C-L> <C-W><C-L>
+nnoremap <C-Z> :buffers<CR>:buffer<Space>
+inoremap <C-C> <ESC>
+noremap <silent> <C-N> :call smooth_scroll#down(&scroll, 0, 1)<CR>
+noremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>
 cnoreabbrev wq w<bar>Sayonara!
 cnoreabbrev  q       Sayonara!
 cnoreabbrev wQ w<bar>Sayonara
 cnoreabbrev  Q       Sayonara
-inoremap qq <ESC>
 colorscheme one
 set background=dark
 set number relativenumber
@@ -61,5 +65,8 @@ set backspace=indent,eol,start
 set hidden
 inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-silent! call repeat#set("\<Plug>MyWonderfulMap", v:count)
+augroup TagBar
+    autocmd!
+    autocmd FileType tagbar nnoremap <buffer> <C-J> <Nop>
+    autocmd FileType tagbar nnoremap <buffer> <C-K> <Nop>
+augroup END
