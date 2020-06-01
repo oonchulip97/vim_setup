@@ -14,3 +14,5 @@ cd ~/vim_setup
 ```
 
 Have fun vim-ing :)
+
+Warning: This configuration file will overwrite your configuration file if you have any!
