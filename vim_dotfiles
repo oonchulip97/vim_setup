@@ -1,71 +1,70 @@
+"Vim plugins
 call plug#begin("~/.vim/plugged")
-Plug 'vim-airline/vim-airline'
-Plug 'rakr/vim-one'
-Plug 'scrooloose/nerdtree'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
-Plug 'junegunn/fzf.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'ajh17/VimCompletesMe'
-Plug 'majutsushi/tagbar', { 'do': 'sudo apt-get install exuberant-ctags' }
-Plug 'Raimondi/delimitMate'
-Plug 'octol/vim-cpp-enhanced-highlight'
-Plug 'maralla/validator.vim'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } }
-Plug 'Yggdroot/indentLine'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'jeffkreeftmeijer/vim-numbertoggle'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-commentary'
-Plug 'vim-scripts/ReplaceWithRegister'
-Plug 'romainl/vim-cool'
-Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }
-Plug 'terryma/vim-smooth-scroll'
+Plug 'vim-airline/vim-airline'  "status tabline
+Plug 'rakr/vim-one'  "light and dark vim colorscheme
+Plug 'scrooloose/nerdtree'  "file system explorer
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "command-line fuzzy finder
+Plug 'junegunn/fzf.vim'  "fzf commands for vim
+Plug 'tpope/vim-fugitive' "git
+Plug 'ajh17/VimCompletesMe'  "tab completion
+Plug 'majutsushi/tagbar', { 'do': 'sudo apt install exuberant-ctags' }  "class outline viewer
+Plug 'Raimondi/delimitMate'  "automatic closing of surrounding
+Plug 'octol/vim-cpp-enhanced-highlight'  "additional syntax highlighting for cpp
+Plug 'vim-python/python-syntax'  "additional syntax highlighting for python
+Plug 'maralla/validator.vim', { 'do': 'sudo apt install clang-tidy flake8'} "syntax checking framework
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}  "markdown preview in browser
+Plug 'Yggdroot/indentLine'  "vertical lines displayed for indentation
+Plug 'ntpeters/vim-better-whitespace'  "whitespace characters highlighter & remover
+Plug 'jeffkreeftmeijer/vim-numbertoggle'  "relative number disabled when inserting
+Plug 'tpope/vim-repeat'  "repeat for vim surround
+Plug 'tpope/vim-surround'  "surrounding editor
+Plug 'tpope/vim-commentary'  "commenting editor
+Plug 'vim-scripts/ReplaceWithRegister'  "replacing editor
+Plug 'romainl/vim-cool'  "highlighting disabled when finish searching
+Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }  "smart buffer and window delete
+Plug 'terryma/vim-smooth-scroll'  "smooth scrolling
 call plug#end()
 
-let g:airline_theme='one'
-let g:airline#extensions#tabline#enabled = 1
-let g:cpp_class_scope_highlight = 1
-let g:cpp_member_variable_highlight = 1
-let g:cpp_class_decl_highlight = 1
-let g:validator_permament_sign = 1
-let g:indentLine_concealcursor = ""
-filetype plugin on
-nnoremap <C-F> :NERDTreeToggle<CR>
-nnoremap <C-V> :Files ~<CR>
-nnoremap <C-G> :TagbarToggle<CR>
-nnoremap <C-U> :MarkdownPreview<CR>
-nnoremap <C-J> :bnext<CR>
-nnoremap <C-K> :bprev<CR>
-nnoremap <C-H> <C-W><C-H>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-Z> :buffers<CR>:buffer<Space>
-inoremap <C-C> <ESC>
-noremap <silent> <C-N> :call smooth_scroll#down(&scroll, 0, 1)<CR>
-noremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>
-cnoreabbrev wq w<bar>Sayonara!
-cnoreabbrev  q       Sayonara!
-cnoreabbrev wQ w<bar>Sayonara
-cnoreabbrev  Q       Sayonara
-colorscheme one
-set background=dark
-set number relativenumber
-set ic
-set hlsearch
-set incsearch
-set tabstop=2
-set expandtab
-set shiftwidth=2
-set autoindent
-set smartindent
-set cindent
-set listchars=tab:>-
-set list
-set backspace=indent,eol,start
-set hidden
-inoremap <expr> <TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr> <S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-augroup TagBar
+"Vim configurations
+let g:airline_theme='one'  "dark vim colorscheme
+let g:airline#extensions#tabline#enabled = 1  "all buffers displayed if one tab only
+let g:cpp_class_scope_highlight = 1  "cpp class scopes highlighted
+let g:cpp_member_variable_highlight = 1  "cpp member variables highlighted
+let g:cpp_class_decl_highlight = 1  "cpp class declaration highlighted
+let g:python_highlight_all = 1  "python syntax highlighted
+let g:validator_permament_sign = 1  "sign column displayed permanently
+filetype plugin indent on  "indentation rules for specific filetypes
+nnoremap <C-F> :NERDTreeToggle<CR>|  "open NERDTree
+nnoremap <C-V> :Files ~<CR>|  "search for file from home
+nnoremap <C-G> :TagbarToggle<CR>|  "open TagBar
+nnoremap <C-U> :MarkdownPreview<CR>|  "preview markdown in browser
+nnoremap <C-J> :bnext<CR>|  "navigate to next buffer
+nnoremap <C-K> :bprev<CR>|  "navigate to previous buffer
+nnoremap <C-H> <C-W><C-H>|  "navigate to left split pane
+nnoremap <C-L> <C-W><C-L>|  "navigate to right split pane
+nnoremap <C-T> :tabnext<CR>|  "navigate to next tab
+nnoremap <C-Y> :tabprev<CR>|  "navigate to previous tab
+nnoremap <C-Z> :buffers<CR>:buffer<Space>| "open buffer list (use for multi-tab situation)
+inoremap <C-C> <ESC>|  "remap escape
+noremap <silent> <C-N> :call smooth_scroll#down(&scroll, 0, 1)<CR>| "scroll down
+noremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>|  "scroll up
+cnoreabbrev wq w<bar>Sayonara|  "save and quit buffer and window
+cnoreabbrev  q       Sayonara|  "quit buffer and window
+cnoreabbrev wQ w<bar>Sayonara!|  "save and quit buffer only
+cnoreabbrev  Q       Sayonara!|  "quit buffer only
+colorscheme one  "dark vim colorscheme
+set background=dark  "dark vim colorscheme
+set number relativenumber  "relative number
+set ic  "ignore case in search
+set hlsearch  "highlight search
+set incsearch  "incremental search
+set tabstop=2  "interpret tab as 2 columns
+set shiftwidth=2  "create indent as 2 columns
+set expandtab  "create tab as spaces
+set autoindent  "copy indent from current line into new line
+set backspace=indent,eol,start  "backspace for autoindent, line breaks and start of insert
+set hidden  "switch buffer while perserving buffer history
+augroup TagBar  "disable buffer navigation in TagBar
     autocmd!
     autocmd FileType tagbar nnoremap <buffer> <C-J> <Nop>
     autocmd FileType tagbar nnoremap <buffer> <C-K> <Nop>
