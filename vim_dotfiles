@@ -16,6 +16,8 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'Yggdroot/indentLine'  "vertical lines displayed for indentation
 Plug 'ntpeters/vim-better-whitespace'  "whitespace characters highlighter & remover
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  "relative number disabled when inserting
+Plug 'gaving/vim-textobj-argument' "text object for argument
+Plug 'michaeljsmith/vim-indent-object' "text object for indent
 Plug 'tpope/vim-repeat'  "repeat for vim surround
 Plug 'tpope/vim-surround'  "surrounding editor
 Plug 'tpope/vim-commentary'  "commenting editor
