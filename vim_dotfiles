@@ -1,59 +1,70 @@
 "Vim plugins
 call plug#begin("~/.vim/plugged")
-Plug 'vim-airline/vim-airline'  "status tabline
-Plug 'rakr/vim-one'  "light and dark vim colorscheme
-Plug 'scrooloose/nerdtree'  "file system explorer
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "command-line fuzzy finder
-Plug 'junegunn/fzf.vim'  "fzf commands for vim
-Plug 'tpope/vim-fugitive' "git
-Plug 'ajh17/VimCompletesMe'  "tab completion
-Plug 'majutsushi/tagbar', { 'do': 'sudo apt install exuberant-ctags' }  "class outline viewer
+Plug 'vim-airline/vim-airline'  "statusline tabline
+Plug 'vim-airline/vim-airline-themes'  "statusline tabline colorscheme
+Plug 'rakr/vim-one'  "vim colorscheme
+Plug 'preservim/nerdtree'  "file system explorer
+Plug 'Yggdroot/indentLine'  "vertical lines for indentation
+Plug 'ntpeters/vim-better-whitespace'  "trailing whitespace highlighter
+Plug 'jeffkreeftmeijer/vim-numbertoggle'  "no relative number when not in focus
+Plug 'romainl/vim-cool'  "no highlighting when finish searching
+Plug 'terryma/vim-smooth-scroll'  "smooth scrolling
 Plug 'Raimondi/delimitMate'  "automatic closing of surrounding
-Plug 'octol/vim-cpp-enhanced-highlight'  "additional syntax highlighting for cpp
-Plug 'vim-python/python-syntax'  "additional syntax highlighting for python
-Plug 'maralla/validator.vim', { 'do': 'sudo apt install clang-tidy flake8'} "syntax checking framework
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}  "markdown preview in browser
-Plug 'Yggdroot/indentLine'  "vertical lines displayed for indentation
-Plug 'ntpeters/vim-better-whitespace'  "whitespace characters highlighter & remover
-Plug 'jeffkreeftmeijer/vim-numbertoggle'  "relative number disabled when inserting
 Plug 'gaving/vim-textobj-argument' "text object for argument
 Plug 'michaeljsmith/vim-indent-object' "text object for indent
-Plug 'tpope/vim-repeat'  "repeat for vim surround
 Plug 'tpope/vim-surround'  "surrounding editor
+Plug 'tpope/vim-repeat'  "repeat for vim surround
 Plug 'tpope/vim-commentary'  "commenting editor
 Plug 'vim-scripts/ReplaceWithRegister'  "replacing editor
-Plug 'romainl/vim-cool'  "highlighting disabled when finish searching
 Plug 'mhinz/vim-sayonara', { 'on': 'Sayonara' }  "smart buffer and window delete
-Plug 'terryma/vim-smooth-scroll'  "smooth scrolling
+Plug 'tpope/vim-fugitive' "git
+Plug 'airblade/vim-gitgutter'  "git diff markers
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}  "markdown preview in browser
+Plug 'ludovicchabant/vim-gutentags'  "tag management
+Plug 'lifepillar/vim-mucomplete'  "tab completion
+Plug 'dense-analysis/ale'  "syntax checking framework
+Plug 'octol/vim-cpp-enhanced-highlight'  "additional syntax highlighting for cpp
+Plug 'vim-python/python-syntax'  "additional syntax highlighting for python
 call plug#end()
 
 "Vim configurations
-let g:airline_theme='one'  "dark vim colorscheme
+let g:airline_theme='onedark'  "statusline tabline colorscheme
 let g:airline#extensions#tabline#enabled = 1  "all buffers displayed if one tab only
+let g:airline#extensions#ale#enabled = 1  "warning/error displayed
+let NERDTreeQuitOnOpen = 1 "file explorer is closed after file is opened
+let g:mucomplete#enable_auto_at_startup = 1  "autocompletion while typing
+let g:ale_linters = {'c': ['cppcheck'], 'cpp': ['cppcheck']}  "syntax checker
+let g:ale_python_flake8_options = '--max-line-length=120'  "syntax checking flag
 let g:cpp_class_scope_highlight = 1  "cpp class scopes highlighted
 let g:cpp_member_variable_highlight = 1  "cpp member variables highlighted
 let g:cpp_class_decl_highlight = 1  "cpp class declaration highlighted
+let g:cpp_posix_standard = 1  "POSIX function highlighted
+let g:cpp_experimental_template_highlight = 1  "template function highlighted
+let g:cpp_concepts_highlight = 1  "library concept highlighted
 let g:python_highlight_all = 1  "python syntax highlighted
-let g:validator_permament_sign = 1  "sign column displayed permanently
-filetype plugin indent on  "indentation rules for specific filetypes
-nnoremap <C-F> :NERDTreeToggle<CR>|  "open NERDTree
-nnoremap <C-V> :Files ~<CR>|  "search for file from home
-nnoremap <C-G> :TagbarToggle<CR>|  "open TagBar
-nnoremap <C-U> :MarkdownPreview<CR>|  "preview markdown in browser
-nnoremap <C-J> :bnext<CR>|  "navigate to next buffer
-nnoremap <C-K> :bprev<CR>|  "navigate to previous buffer
-nnoremap <C-H> <C-W><C-H>|  "navigate to left split pane
-nnoremap <C-L> <C-W><C-L>|  "navigate to right split pane
-nnoremap <C-T> :tabnext<CR>|  "navigate to next tab
-nnoremap <C-Y> :tabprev<CR>|  "navigate to previous tab
-nnoremap <C-Z> :buffers<CR>:buffer<Space>| "open buffer list (use for multi-tab situation)
-inoremap <C-C> <ESC>|  "remap escape
-noremap <silent> <C-N> :call smooth_scroll#down(&scroll, 0, 1)<CR>| "scroll down
-noremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>|  "scroll up
-cnoreabbrev wq w<bar>Sayonara|  "save and quit buffer and window
-cnoreabbrev  q       Sayonara|  "quit buffer and window
-cnoreabbrev wQ w<bar>Sayonara!|  "save and quit buffer only
-cnoreabbrev  Q       Sayonara!|  "quit buffer only
+"Tag files generation
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')  "tag files location
+let g:gutentags_ctags_extra_args = ['--c-kinds=+p+l']  "C/C++ flags for tag files
+filetype plugin indent on  "filetype-specific plugin and indentation rules
+nnoremap <silent> <C-F> :NERDTreeToggle<CR>|  "open file explorer
+nnoremap <silent> <C-U> :MarkdownPreview<CR>|  "preview markdown in browser
+nnoremap <silent> <C-J> :bnext<CR>|  "navigate to next buffer
+nnoremap <silent> <C-K> :bprev<CR>|  "navigate to previous buffer
+nnoremap <silent> <C-H> <C-W><C-H>|  "navigate to left split pane
+nnoremap <silent> <C-L> <C-W><C-L>|  "navigate to right split pane
+nnoremap <silent> <C-N> :call smooth_scroll#down(&scroll, 0, 1)<CR>| "scroll down
+nnoremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>|  "scroll up
+nnoremap <silent> <C-B> :buffers<CR>:buffer<Space>| "open buffer list (use for multi-tab situation)
+inoremap <silent> <C-C> <ESC>|  "remap escape
+nnoremap <silent> <C-G> :tjump <C-R><C-W><CR>  "open tag list (go to declaration/definition)
+inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"  " accept autocompletion by Enter
+inoremap <silent> <expr> <C-Z> pumvisible() ? "\<C-e>" : "\<Esc>"  " cancel autocompletion by Ctrl-Z
+cnoreabbrev <silent> wq w<bar>Sayonara|  "save and quit buffer and window
+cnoreabbrev <silent> q        Sayonara|  "quit buffer and window
 colorscheme one  "dark vim colorscheme
 set background=dark  "dark vim colorscheme
 set number relativenumber  "relative number
@@ -65,9 +76,21 @@ set shiftwidth=2  "create indent as 2 columns
 set expandtab  "create tab as spaces
 set autoindent  "copy indent from current line into new line
 set backspace=indent,eol,start  "backspace for autoindent, line breaks and start of insert
+set splitright  "split to right
 set hidden  "switch buffer while perserving buffer history
-augroup TagBar  "disable buffer navigation in TagBar
-    autocmd!
-    autocmd FileType tagbar nnoremap <buffer> <C-J> <Nop>
-    autocmd FileType tagbar nnoremap <buffer> <C-K> <Nop>
-augroup END
+set completeopt-=preview  "do not preview during autocompletion
+set completeopt+=menuone  "display autocompletion menu even for single match
+set completeopt+=noinsert,noselect  "do not auto insert/select during autocompletion
+set shortmess+=c   "turn off autocompletion messages
+set belloff+=ctrlg "do not beep after autocompletion
+set pumheight=5  "limit menu height during autocompletion
+set signcolumn=yes  "show sign column even if there is no git diff marker
+set updatetime=100  "fast update of git diff markers
+"Color for popup menu/popup menu selection
+highlight Pmenu ctermbg=darkgray ctermfg=black guibg=darkgray guifg=black
+highlight PmenuSel ctermbg=blue ctermfg=black guibg=blue guifg=black
+autocmd! FileType fugitiveblame call s:fugitive_settings()
+function! s:fugitive_settings()
+  nunmap <silent> <buffer> <C-M>|  "unmap default keybind
+  nnoremap <silent> <buffer> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>|  "custom keybind for scrolling up
+endfunction
