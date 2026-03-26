@@ -1,8 +1,9 @@
 "Vim plugins
 call plug#begin("~/.vim/plugged")
-Plug 'vim-airline/vim-airline'  "status tabline
+Plug 'vim-airline/vim-airline'  "statusline tabline
+Plug 'vim-airline/vim-airline-themes'  "statusline tabline colorscheme
 Plug 'rakr/vim-one'  "light and dark vim colorscheme
-Plug 'scrooloose/nerdtree'  "file system explorer
+Plug 'preservim/nerdtree'  "file system explorer
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }  "command-line fuzzy finder
 Plug 'junegunn/fzf.vim'  "fzf commands for vim
 Plug 'tpope/vim-fugitive' "git
@@ -28,7 +29,7 @@ Plug 'terryma/vim-smooth-scroll'  "smooth scrolling
 call plug#end()
 
 "Vim configurations
-let g:airline_theme='one'  "dark vim colorscheme
+let g:airline_theme='onedark'  "onedark statusline tabline colorscheme
 let g:airline#extensions#tabline#enabled = 1  "all buffers displayed if one tab only
 let g:cpp_class_scope_highlight = 1  "cpp class scopes highlighted
 let g:cpp_member_variable_highlight = 1  "cpp member variables highlighted
@@ -36,20 +37,20 @@ let g:cpp_class_decl_highlight = 1  "cpp class declaration highlighted
 let g:python_highlight_all = 1  "python syntax highlighted
 let g:validator_permament_sign = 1  "sign column displayed permanently
 filetype plugin indent on  "indentation rules for specific filetypes
-nnoremap <C-F> :NERDTreeToggle<CR>|  "open NERDTree
+nnoremap <silent> <C-F> :NerdTreeToggle<CR>|  "open NERDTree
 nnoremap <C-V> :Files ~<CR>|  "search for file from home
 nnoremap <C-G> :TagbarToggle<CR>|  "open TagBar
 nnoremap <C-U> :MarkdownPreview<CR>|  "preview markdown in browser
-nnoremap <C-J> :bnext<CR>|  "navigate to next buffer
-nnoremap <C-K> :bprev<CR>|  "navigate to previous buffer
-nnoremap <C-H> <C-W><C-H>|  "navigate to left split pane
-nnoremap <C-L> <C-W><C-L>|  "navigate to right split pane
-nnoremap <C-T> :tabnext<CR>|  "navigate to next tab
-nnoremap <C-Y> :tabprev<CR>|  "navigate to previous tab
+nnoremap <silent> <C-J> :bnext<CR>|  "navigate to next buffer
+nnoremap <silent> <C-K> :bprev<CR>|  "navigate to previous buffer
+nnoremap <silent> <C-H> <C-W><C-H>|  "navigate to left split pane
+nnoremap <silent> <C-L> <C-W><C-L>|  "navigate to right split pane
+"nnoremap <C-T> :tabnext<CR>|  "navigate to next tab
+"nnoremap <C-Y> :tabprev<CR>|  "navigate to previous tab
 nnoremap <C-Z> :buffers<CR>:buffer<Space>| "open buffer list (use for multi-tab situation)
 inoremap <C-C> <ESC>|  "remap escape
-noremap <silent> <C-N> :call smooth_scroll#down(&scroll, 0, 1)<CR>| "scroll down
-noremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>|  "scroll up
+nnoremap <silent> <C-N> :call smooth_scroll#down(&scroll, 0, 1)<CR>| "scroll down
+nnoremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>|  "scroll up
 cnoreabbrev wq w<bar>Sayonara|  "save and quit buffer and window
 cnoreabbrev  q       Sayonara|  "quit buffer and window
 cnoreabbrev wQ w<bar>Sayonara!|  "save and quit buffer only
