@@ -56,7 +56,7 @@ nnoremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>|  "scroll up
 nnoremap <C-Z> :buffers<CR>:buffer<Space>| "open buffer list (use for multi-tab situation)
 inoremap <C-C> <ESC>|  "remap escape
 inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"  " accept completion by Enter
-inoremap <expr> <Esc> pumvisible() ? "\<C-e>\<Esc>" : "\<Esc>"  " cancel completion by Esc
+inoremap <expr> <C-C> pumvisible() ? "\<C-e>" : "\<Esc>"  " cancel completion by Ctrl-C
 cnoreabbrev wq w<bar>Sayonara|  "save and quit buffer and window
 cnoreabbrev  q       Sayonara|  "quit buffer and window
 cnoreabbrev wQ w<bar>Sayonara!|  "save and quit buffer only
@@ -80,11 +80,10 @@ set completeopt+=noinsert,noselect  "do not auto insert/select during autocomple
 set shortmess+=c   "turn off completion messages
 set belloff+=ctrlg "do not beep
 set pumheight=5  "limit menu height during autocompletion
-set pumwidth=30  "limit menu height during autocompletion
 set updatetime=100  "fast update of git diff markers
 "Color for popup menu/popup menu selection
 highlight Pmenu ctermbg=darkgray ctermfg=black guibg=darkgray guifg=black
-highlight PmenuSel ctermbg=blue ctermfg=white guibg=blue guifg=white
+highlight PmenuSel ctermbg=blue ctermfg=black guibg=blue guifg=black
 augroup TagBar  "disable buffer navigation in TagBar
     autocmd!
     autocmd FileType tagbar nnoremap <buffer> <C-J> <Nop>
