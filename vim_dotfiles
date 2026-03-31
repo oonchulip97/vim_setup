@@ -23,21 +23,22 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'ludovicchabant/vim-gutentags'  "tag management
 Plug 'lifepillar/vim-mucomplete'  "tab completion
 " Plug 'maralla/validator.vim', { 'do': 'sudo apt install clang-tidy flake8'} "syntax checking framework
-" Plug 'octol/vim-cpp-enhanced-highlight'  "additional syntax highlighting for cpp
-" Plug 'vim-python/python-syntax'  "additional syntax highlighting for python
+Plug 'octol/vim-cpp-enhanced-highlight'  "additional syntax highlighting for cpp
+Plug 'vim-python/python-syntax'  "additional syntax highlighting for python
 call plug#end()
 
 "Vim configurations
 let g:airline_theme='onedark'  "statusline tabline colorscheme
 let g:airline#extensions#tabline#enabled = 1  "all buffers displayed if one tab only
 let NERDTreeQuitOnOpen = 1 "file explorer is closed after file is opened
-" let g:fzf_preview_window = ['hidden', 'ctrl-/']
-" let g:fzf_history_dir = '~/.local/share/fzf-history'
 let g:mucomplete#enable_auto_at_startup = 1  "autocompletion while typing
-" let g:cpp_class_scope_highlight = 1  "cpp class scopes highlighted
-" let g:cpp_member_variable_highlight = 1  "cpp member variables highlighted
-" let g:cpp_class_decl_highlight = 1  "cpp class declaration highlighted
-" let g:python_highlight_all = 1  "python syntax highlighted
+let g:cpp_class_scope_highlight = 1  "cpp class scopes highlighted
+let g:cpp_member_variable_highlight = 1  "cpp member variables highlighted
+let g:cpp_class_decl_highlight = 1  "cpp class declaration highlighted
+let g:cpp_posix_standard = 1  "POSIX function highlighted
+let g:cpp_experimental_template_highlight = 1  "template function highlighted
+let g:cpp_concepts_highlight = 1  "library concept highlighted
+let g:python_highlight_all = 1  "python syntax highlighted
 " let g:validator_permament_sign = 1  "sign column displayed permanently
 "Tag files generation
 let g:gutentags_generate_on_new = 1
@@ -61,7 +62,7 @@ nnoremap <silent> <C-G> :tjump <C-R><C-W><CR>  "open tag list (go to declaration
 inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"  " accept autocompletion by Enter
 inoremap <silent> <expr> <C-Z> pumvisible() ? "\<C-e>" : "\<Esc>"  " cancel autocompletion by Ctrl-Z
 cnoreabbrev <silent> wq w<bar>Sayonara|  "save and quit buffer and window
-cnoreabbrev <silent> q       Sayonara|  "quit buffer and window
+cnoreabbrev <silent> q        Sayonara|  "quit buffer and window
 colorscheme one  "dark vim colorscheme
 set background=dark  "dark vim colorscheme
 set number relativenumber  "relative number
