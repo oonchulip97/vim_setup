@@ -30,7 +30,7 @@ call plug#end()
 "Vim configurations
 let g:airline_theme='onedark'  "statusline tabline colorscheme
 let g:airline#extensions#tabline#enabled = 1  "all buffers displayed if one tab only
-let g:airline#extensions#ale#enabled = 1  "warning/error displayed
+let g:airline#extensions#ale#enabled = 0  "warning/error not displayed
 let NERDTreeQuitOnOpen = 1 "file explorer is closed after file is opened
 let g:mucomplete#enable_auto_at_startup = 1  "autocompletion while typing
 let g:ale_linters = {'c': ['cppcheck'], 'cpp': ['cppcheck']}  "syntax checker
