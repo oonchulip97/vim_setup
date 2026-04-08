@@ -34,7 +34,7 @@ let g:airline#extensions#ale#enabled = 0  "warning/error not displayed
 let NERDTreeQuitOnOpen = 1 "file explorer is closed after file is opened
 let g:mucomplete#enable_auto_at_startup = 1  "autocompletion while typing
 let g:ale_linters = {'c': ['cppcheck', 'cpplint'], 'cpp': ['cppcheck', 'cpplint']}  "syntax checker
-let g:ale_cpp_cpplint_args = '--length=120'  "syntax checking flag
+let g:ale_cpp_cpplint_options = '--linelength=120'  "syntax checking flag
 let g:ale_python_flake8_options = '--max-line-length=120'  "syntax checking flag
 let g:cpp_class_scope_highlight = 1  "cpp class scopes highlighted
 let g:cpp_member_variable_highlight = 1  "cpp member variables highlighted
@@ -61,9 +61,9 @@ nnoremap <silent> <C-N> :call smooth_scroll#down(&scroll, 0, 1)<CR>| "scroll dow
 nnoremap <silent> <C-M> :call smooth_scroll#up(&scroll, 0, 1)<CR>|  "scroll up
 nnoremap <silent> <C-B> :buffers<CR>:buffer<Space>| "open buffer list (use for multi-tab situation)
 inoremap <silent> <C-C> <ESC>|  "remap escape
-nnoremap <silent> <C-G> :tjump <C-R><C-W><CR>  "open tag list (go to declaration/definition)
-inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"  " accept autocompletion by Enter
-inoremap <silent> <expr> <C-Z> pumvisible() ? "\<C-e>" : "\<Esc>"  " cancel autocompletion by Ctrl-Z
+nnoremap <silent> <C-G> :tjump <C-R><C-W><CR>|  "open tag list (go to declaration/definition)
+inoremap <silent> <expr> <CR> pumvisible() ? "\<C-y>" : "\<CR>"|  " accept autocompletion by Enter
+inoremap <silent> <expr> <C-Z> pumvisible() ? "\<C-e>" : "\<Esc>"|  " cancel autocompletion by Ctrl-Z
 cnoreabbrev <silent> wq w<bar>Sayonara|  "save and quit buffer and window
 cnoreabbrev <silent> q        Sayonara|  "quit buffer and window
 colorscheme one  "dark vim colorscheme
