@@ -33,6 +33,7 @@ let g:airline#extensions#tabline#enabled = 1  "all buffers displayed if one tab 
 let g:airline#extensions#ale#enabled = 0  "warning/error not displayed
 let NERDTreeQuitOnOpen = 1 "file explorer is closed after file is opened
 let g:mucomplete#enable_auto_at_startup = 1  "autocompletion while typing
+let g:mucomplete#chains = {'default' : ['keyn']}  "autocompletion suggestions from buffers only
 let g:ale_linters = {'c': ['cppcheck', 'cpplint'], 'cpp': ['cppcheck', 'cpplint']}  "syntax checker
 let g:ale_cpp_cpplint_options = '--filter=-build/header_guard,build/include_order,runtime/references --linelength=120'  "syntax checking flag
 let g:ale_python_flake8_options = '--max-line-length=120'  "syntax checking flag
@@ -70,6 +71,7 @@ colorscheme one  "dark vim colorscheme
 set background=dark  "dark vim colorscheme
 set number relativenumber  "relative number
 set ic  "ignore case in search
+set smartcase  "case sensitive if query has uppercase
 set hlsearch  "highlight search
 set incsearch  "incremental search
 set tabstop=2  "interpret tab as 2 columns
