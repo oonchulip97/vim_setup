@@ -34,7 +34,7 @@ let g:airline#extensions#ale#enabled = 0  "warning/error not displayed
 let NERDTreeQuitOnOpen = 1 "file explorer is closed after file is opened
 let g:mucomplete#enable_auto_at_startup = 1  "autocompletion while typing
 let g:ale_linters = {'c': ['cppcheck', 'cpplint'], 'cpp': ['cppcheck', 'cpplint']}  "syntax checker
-let g:ale_cpp_cpplint_options = '--linelength=120'  "syntax checking flag
+let g:ale_cpp_cpplint_options = '--filter=-build/header_guard,build/include_order,runtime/references --linelength=120'  "syntax checking flag
 let g:ale_python_flake8_options = '--max-line-length=120'  "syntax checking flag
 let g:cpp_class_scope_highlight = 1  "cpp class scopes highlighted
 let g:cpp_member_variable_highlight = 1  "cpp member variables highlighted
